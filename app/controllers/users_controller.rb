@@ -11,7 +11,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       log_in @user
-      flash[:success] = "Object successfully created"
+      remember @user
+      flash[:success] = "Account successfully created"
       redirect_to @user
     else
       flash[:error] = "Something went wrong"
