@@ -28,6 +28,7 @@ class PasswordResetsController < ApplicationController
       @user.errors.add(:password, :blank)
       render 'edit'
     elsif @user.update(user_params)
+      @user.delete_reset_token
       log_in @user
       flash[:success] = "Password reset sucess!"
       redirect_to @user

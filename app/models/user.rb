@@ -70,6 +70,11 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
 
+  # deactive reset token
+  def delete_reset_token
+    update_attribute(:reset_digest, nil)
+  end
+
   private
     def downcase_email
       self.email = email.downcase 
