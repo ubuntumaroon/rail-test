@@ -15,12 +15,15 @@ class MicropostsInterfaceTest < ActionDispatch::IntegrationTest
       post microposts_path, params: { micropost: { content: "" } }
     end
     assert_select 'div#error_explanation'
+    assert_select 'input[type=file]'
     assert_select 'a[href=?]', '/?page=2' # Correct pagination link
     # Valid submission
     content = "This micropost really ties the room together"
+    image = fixture_file_upload('test/fixtures/kitten.jpg', 'image/jpeg')
     assert_difference 'Micropost.count', 1 do
-      post microposts_path, params: { micropost: { content: content } }
+      post microposts_path, params: { micropost: { content: content, image: image } }
     end
+    assert @user.microposts.first.image.attached?
     assert_redirected_to root_url
     follow_redirect!
     assert_match content, response.body
