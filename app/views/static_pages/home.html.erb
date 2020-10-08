@@ -1,7 +1,7 @@
 <% provide(:title, "Home") %>
 
 <% if logged_in? %>
-  <%= render 'user' %>
+  <%= render partial:'/static_pages/user' %>
 <% else%>
-  <%= render 'guest'%>
+  <%= render '/static_pages/guest'%>
 <% end %>
