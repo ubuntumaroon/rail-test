@@ -74,3 +74,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # active storage
 gem 'active_storage_validations'
+
+# image processing
+gem "image_processing", "~> 1.0"
+gem "mini_magick"
