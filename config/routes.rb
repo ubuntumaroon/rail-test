@@ -20,8 +20,9 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
-  resources :account_activations, only: [:edit]
-  resources :password_resets, only: [:new, :create, :edit, :update]
+  resources :account_activations,    only: [:edit]
+  resources :password_resets,        only: [:new, :create, :edit, :update]
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :microposts,             only: [:create, :destroy]
+  resources :relationships,          only: [:create, :destroy]
 end
